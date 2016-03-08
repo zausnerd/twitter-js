@@ -5,6 +5,7 @@ var id = 1;
 function add(name, text) {
 
     data.push({ name: name, text: text, id: ++id});
+    return id;
 }
 
 function list() {

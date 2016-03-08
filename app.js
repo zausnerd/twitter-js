@@ -4,6 +4,15 @@ var app = express();
 var morgan = require('morgan');
 var routes = require('./index.js');
 
+//socket IO
+var socketio = require('socket.io');
+// ...
+var server = app.listen(3000);
+var io = socketio.listen(server);
+//end socket IO
+
+
+
 //var router  = express.router(); 
 var logger = morgan('combined');
 
@@ -23,10 +32,9 @@ swig.setDefaults({ cache: false });
 
 
 app.use(logger);
-app.use('/', routes);
+app.use('/', routes(io));
 
 
-app.listen(3000);
 
 // var people =[{name: 'Rick Ross'}, {name: 'Dj khaled'}, {name: 'future'}];
 
