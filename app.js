@@ -1,13 +1,15 @@
 var express = require('express');
 var swig = require('swig');
-app var = express();
+var app = express();
 var morgan = require('morgan');
-var routes = require('./routes/');
+var routes = require('./index.js');
 
 //var router  = express.router(); 
 var logger = morgan('combined');
 
 app.engine('html', swig.renderFile);
+
+// app.use(express.static('public'));
 
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
@@ -15,22 +17,9 @@ app.set('views', __dirname + '/views');
 app.set('view cache', false);
 swig.setDefaults({ cache: false });
 
-
-var people =[{name: 'Rick Ross'}, {name: 'Dj khaled'}, {name: 'future'}];
-
-
-
-var locals = {
-	title: 'Example title',
-	people:[
-		{name: 'Jon'},
-		{name: 'James'},
-		{name: 'Joey'}
-	]
-};
-swig.renderFile(__dirname + '/views/index.html', locals, function (err, output) {
-	console.log(output);
-});
+// swig.renderFile(__dirname + '/views/index.html', locals, function (err, output) {
+// 	console.log(output);
+// });
 
 
 app.use(logger);
@@ -39,6 +28,18 @@ app.use('/', routes);
 
 app.listen(3000);
 
+// var people =[{name: 'Rick Ross'}, {name: 'Dj khaled'}, {name: 'future'}];
+
+
+
+// var locals = {
+// 	title: 'Example title',
+// 	people:[
+// 		{name: 'Jon'},
+// 		{name: 'James'},
+// 		{name: 'Joey'}
+// 	]
+// };
 
 // app.use(function(req,res,next) {
 // 	console.log("all router triggered");
