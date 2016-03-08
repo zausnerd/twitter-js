@@ -9,6 +9,7 @@ app.use(function(req,res,next) {
 	console.log("all router triggered");
 	//console.log(res.status());
 	next();
+	console.log("Test");
 });
 
 app.use('/special',function(req,res,next) {
